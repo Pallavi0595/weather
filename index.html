@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>weatherapp</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <div class="main-contanier"> 
+        <div class="city-input">
+        <input type="text" placeholder="Enter the city name"id="cityname">
+      
+      </div>
+        <div class="button-container">
+        <button type="submit" onclick="getdata()"> Fetch Temperature</button>
+    
+      </div>  
+        <div id="show">
+            
+        </div>
+        <script> 
+        
+        function getdata() {
+            var cityname=document.getElementById("cityname").value;
+            
+            fetch('https://api.openweathermap.org/data/2.5/weather?q='+cityname+'&units=metric&appid=9ebd63f0c935533a43e8e9a0a5f0e0a7')
+  .then((response) => {
+    return response.json();
+  })
+  .then((myJson) => {
+    document.getElementById("show").innerHTML=myJson.main.temp +" °C";
+    
+  });
+        }
+        </script>
+    </body>
+</html>
